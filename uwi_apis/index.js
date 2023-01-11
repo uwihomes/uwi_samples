@@ -1,19 +1,18 @@
 const axios = require('axios');
 const crypto = require('crypto');
 
-class HTTPRequest {
-    constructor(clientId, secret, startDateTime, endDateTime) {
+class UwiApi {
+    constructor(clientId, secret, host) {
         this.clientId = clientId;
         this.clientSecret = secret;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
+        this.host = host;
     }
 
-    makeRequest() {
-        const [params, token] = this.generateRequestParams({start: this.startDateTime, end: this.endDateTime}, this.clientId, this.clientSecret);
+    getApplications(startDateTime, endDateTime) {
+        const [params, token] = this.generateRequestParams({start: startDateTime, end: endDateTime}, this.clientId, this.clientSecret);
 
         axios.get(
-                'http://localhost:3000/v1/api-client/loan-application/list',
+                `${this.host}/v1/api-client/loan-application/list`,
                 {
                     params,
                     headers: {
@@ -55,5 +54,5 @@ class HTTPRequest {
     }
 }
 
-const request = new HTTPRequest('your-client-id', 'your-client-secret', 'start-date-time', 'end-date-time');
-request.makeRequest();
+const request = new UwiApi('your-client-id', 'your-client-secret', 'https://staging-api.uwi.ph');
+request.getApplications('2023-01-01 00:00:00', '2023-01-15 00:00:00');
