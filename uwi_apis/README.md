@@ -18,9 +18,11 @@ What things you need to install the software and how to install them:
         git clone https://github.com/uwihomes/uwi_samples.git
 
 2. Go into the uwi_samples/uwi_apis folder
+
         cd uwi_samples/uwi_apis
 
 3. Install the dependencies
+
         npm install
 
 
@@ -31,6 +33,7 @@ Before you can run the project, you will need to configure the client ID, client
 1. Obtain your client ID and client secret in the API Clients section of your Developer CRM.
 2. Open the `index.js` file in your favorite text editor.
 3. Look for the following lines of code:
+
         const request = new UwiApi('your-client-id', 'your-client-secret', 'https://staging-api.uwi.ph');
         request.getApplications('2023-01-01 00:00:00', '2023-01-15 00:00:00');
 4. Replace the string values with your actual client ID, client secret, startDateTime and endDateTime.
